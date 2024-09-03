@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="link"></div>
+<script >
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
+
+    for(let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+
+        if(name == cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }    }
+    return null;
+}
+
+let loginData=getCookie("logindata");
+console.log(loginData);
+let decodedData=atob(loginData);
+let  uname=decodedData.substring(0,decodedData.indexOf(":"));
+let  pwd=decodedData.substring(decodedData.indexOf(":")+1);
+if( uname == 'rishi' && pwd =='123'){
+	document.getElementById("link").innerHTML="<a href='welcome.html'>Click here</a> to continue";
+	
+}
+else{
+	document.getElementById("link").innerHTML="<a href='login.html'>Click here</a> to login";
+}
+
+
+
+</script>
+</body>
+</html>

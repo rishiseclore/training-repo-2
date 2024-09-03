@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Page Not Found</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #7ec8e3, #e6e9ef);
+    overflow: hidden;
+    color: #333;
+  }
+
+  .container {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .container h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  .container p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .container a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .drop {
+    position: absolute;
+    bottom: 100%;
+    width: 1px;
+    height: 80px;
+    pointer-events: none;
+    animation: fall linear infinite;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+    }
+  }
+
+  .landscape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: #4b7b3f;
+    z-index: 2;
+  }
+
+  .mountain {
+    position: absolute;
+    bottom: 20px;
+    width: 200px;
+    height: 200px;
+    background: #556b2f;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 1;
+  }
+
+  .mountain.m1 {
+    left: 20%;
+    height: 150px;
+    width: 150px;
+    background: #6b8e23;
+  }
+
+  .mountain.m2 {
+    left: 50%;
+    height: 200px;
+    width: 200px;
+    background: #556b2f;
+  }
+
+  .tree {
+    position: absolute;
+    bottom: 40px;
+    width: 20px;
+    height: 60px;
+    background: #8b4513;
+    z-index: 3;
+  }
+
+  .tree:before {
+    content: '';
+    position: absolute;
+    bottom: 60px;
+    left: -20px;
+    width: 60px;
+    height: 40px;
+    background: #228b22;
+    clip-path: ellipse(40% 30% at 50% 50%);
+  }
+
+  .animal {
+    position: absolute;
+    bottom: 50px;
+    width: 50px;
+    height: 30px;
+    background: #d2691e;
+    border-radius: 50%;
+    z-index: 4;
+  }
+
+  .animal:before {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    width: 30px;
+    height: 20px;
+    background: #d2691e;
+    border-radius: 50%;
+  }
+
+  .animal:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Oops! Page Not Found</h1>
+  <p>It seems like you got lost in the rain ☔</p>
+  <p>Please check the URL or go back to the <a href="/">homepage</a>.</p>
+</div>
+
+<div class="rain"></div>
+<div class="landscape"></div>
+<div class="mountain m1"></div>
+<div class="mountain m2"></div>
+<div class="tree" style="left: 30%;"></div>
+<div class="tree" style="left: 60%;"></div>
+<div class="animal" style="left: 45%;"></div>
+
+<script>
+  function createRain() {
+    let rainContainer = document.querySelector('.rain');
+    for (let i = 0; i < 100; i++) {
+      let drop = document.createElement('div');
+      drop.classList.add('drop');
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      drop.style.animationDelay = Math.random() * 2 + 's';
+      rainContainer.appendChild(drop);
+    }
+  }
+  createRain();
+</script>
+</body>
+</html>
